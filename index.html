@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JagatSaji - Kuliner Indonesia</title>
+
+    <style>
+        /* =========================
+           RESET
+        ========================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: white;
+            color: #222;
+        }
+
+        .wrapper {
+            width: 90%;
+            max-width: 1001px;
+            margin: auto;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+        nav {
+            width: 100%;
+            background-color: rgb(5, 5, 0);
+            position: sticky;
+            position: -webkit-sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-wrapper {
+            width: 90%;
+            max-width: 1001px;
+            min-height: 80px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo a {
+            font-size: 30px;
+            font-family: Cambria, Cochin, Georgia,
+                Times, "Times New Roman", serif;
+            font-weight: 800;
+            color: #f8f6f5;
+        }
+
+        .menu ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu ul li a {
+            color: rgb(244, 242, 242);
+            font-weight: bold;
+            text-align: center;
+            padding: 0 12px;
+            line-height: 80px;
+        }
+
+        .menu ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .order {
+            background: #f0960e;
+            border-radius: 20px;
+            padding: 10px 15px !important;
+            color: aliceblue !important;
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           BANNER
+        ========================= */
+        .banner {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 50px 0;
+        }
+
+        .kolom {
+            flex: 1;
+            text-align: left;
+        }
+
+        .kolom h2 {
+            font-family: "Comic Sans MS", cursive;
+            font-weight: 700;
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #e58d42;
+            line-height: 50px;
+        }
+
+        .deskripsi {
+            font-size: 16px;
+            font-family: "Times New Roman", Times, serif;
+            color: #555;
+            line-height: 25px;
+            text-align: justify;
+            margin-bottom: 10px;
+        }
+
+        .gambar {
+            width: 480px;
+            height: 330px;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: 0 10px 20px rgba(246, 182, 44, 0.7);
+            transition: 0.3s;
+        }
+
+        .gambar:hover {
+            transform: translateY(-5px);
+        }
+
+        .reservasi {
+            display: inline-block;
+            background: #f0960e;
+            border-radius: 20px;
+            margin-top: 20px;
+            padding: 10px 15px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .reservasi:hover {
+            background: #d77e00;
+        }
+
+
+        /* =========================
+           KATALOG MENU
+        ========================= */
+        .katalog {
+            border-top: 1px solid #aaa;
+            padding: 25px 0 60px;
+        }
+
+        .judul-menu {
+            text-align: center;
+            font-family: "Comic Sans MS", cursive;
+            color: #e5a05d;
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            background: #f3d39d;
+            padding: 12px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin: 12px 0 8px;
+        }
+
+        .card p {
+            font-size: 13px;
+            line-height: 19px;
+            color: #555;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+        footer {
+            background: #151515;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-container {
+            width: 90%;
+            max-width: 1001px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .footer-box h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-box p {
+            font-size: 13px;
+            line-height: 23px;
+            color: #ddd;
+        }
+
+        .social {
+            margin-top: 10px;
+        }
+
+        .social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 25px;
+            height: 25px;
+            margin-right: 5px;
+            border-radius: 50%;
+            background: #444;
+            color: white;
+            font-size: 12px;
+        }
+
+        .copyright {
+            border-top: 1px solid #444;
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: #ccc;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+        @media screen and (max-width: 768px) {
+
+            .nav-wrapper {
+                width: 95%;
+                min-height: 65px;
+            }
+
+            .logo a {
+                font-size: 21px;
+            }
+
+            .menu ul li a {
+                font-size: 10px;
+                padding: 0 5px;
+                line-height: 65px;
+            }
+
+            .banner {
+                flex-direction: column;
+                padding: 35px 0;
+            }
+
+            .kolom {
+                width: 100%;
+            }
+
+            .kolom h2 {
+                font-size: 32px;
+                line-height: 40px;
+            }
+
+            .gambar {
+                width: 100%;
+                height: auto;
+            }
+
+            .menu-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+    <nav>
+        <div class="nav-wrapper">
+
+            <div class="logo">
+                <a href="#">JagatSaji</a>
+            </div>
+
+            <div class="menu">
+                <ul>
+
+                    <li>
+                        <a href="#beranda">Beranda</a>
+                    </li>
+
+                    <li>
+                        <a href="#menu">Menu</a>
+                    </li>
+
+                    <li>
+                        <a href="#rekanan">Rekanan</a>
+                    </li>
+
+                    <li>
+                        <a href="#kontak">Hubungi Kami</a>
+                    </li>
+
+                    <li>
+                        <a href="#menu" class="order">
+                            Pesan Disini
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- =========================
+         BANNER
+    ========================= -->
+    <section class="wrapper banner" id="beranda">
+
+        <div class="kolom">
+
+            <h2>
+                Sajian Masakan Indonesia
+            </h2>
+
+            <p class="deskripsi">
+                Nikmati kelezatan resep warisan leluhur yang diolah
+                dari bumbu rempah pilihan. Dari Sabang sampai Merauke,
+                kami menghadirkan kehangatan tradisi Indonesia langsung
+                ke meja makan Anda.
+            </p>
+
+            <p class="deskripsi">
+                Jelajahi rasa kuliner Nusantara dengan kesegaran bahan
+                dan kehangatan tradisi dalam setiap sajian. Pesan
+                sekarang dan nikmati kelezatan masakan khas Indonesia!
+            </p>
+
+            <a href="#menu" class="reservasi">
+                Pesan Sekarang
+            </a>
+
+        </div>
+
+        <img
+            src="nusantara.jpg"
+            class="gambar"
+            alt="Masakan Indonesia"
+        >
+
+    </section>
+
+
+    <!-- =========================
+         KATALOG MENU
+    ========================= -->
+    <section class="wrapper katalog" id="menu">
+
+        <h1 class="judul-menu">
+            Pilihan Menu
+        </h1>
+
+        <div class="menu-container">
+
+            <!-- 1 -->
+            <div class="card">
+                <img
+                    src="images/nasi-kuning.jpg"
+                    alt="Nasi Kuning"
+                >
+
+                <h3>Nasi Kuning</h3>
+
+                <p>
+                    Nasi kuning dengan rasa gurih yang
+                    dilengkapi berbagai lauk dan pelengkap.
+                </p>
+            </div>
+
+
+            <!-- 2 -->
+            <div class="card">
+                <img
+                    src="images/gado-gado.jpg"
+                    alt="Gado-gado"
+                >
+
+                <h3>Gado-gado</h3>
+
+                <p>
+                    Makanan khas Indonesia dengan sayuran
+                    segar dan bumbu kacang yang lezat.
+                </p>
+            </div>
+
+
+            <!-- 3 -->
+            <div class="card">
+                <img
+                    src="images/nasi-uduk.jpg"
+                    alt="Nasi Uduk"
+                >
+
+                <h3>Nasi Uduk</h3>
+
+                <p>
+                    Nasi yang dimasak menggunakan santan
+                    sehingga memiliki rasa gurih dan harum.
+                </p>
+            </div>
+
+
+            <!-- 4 -->
+            <div class="card">
+                <img
+                    src="images/nasi-daun-jeruk.jpg"
+                    alt="Nasi Daun Jeruk"
+                >
+
+                <h3>Nasi Daun Jeruk</h3>
+
+                <p>
+                    Nasi dengan aroma daun jeruk yang
+                    memberikan rasa segar dan harum.
+                </p>
+            </div>
+
+
+            <!-- 5 -->
+            <div class="card">
+                <img
+                    src="images/nasi-pecel.jpg"
+                    alt="Nasi Pecel"
+                >
+
+                <h3>Nasi Pecel</h3>
+
+                <p>
+                    Nasi pecel dengan sayuran segar dan
+                    bumbu kacang khas Nusantara.
+                </p>
+            </div>
+
+
+            <!-- 6 -->
+            <div class="card">
+                <img
+                    src="images/rujak-cingur.jpg"
+                    alt="Rujak Cingur"
+                >
+
+                <h3>Rujak Cingur</h3>
+
+                <p>
+                    Makanan khas Jawa Timur dengan sayuran,
+                    buah, dan bumbu petis yang khas.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         REKANAN
+    ========================= -->
+    <section id="rekanan" style="height: 1px;">
+    </section>
+
+
+    <!-- =========================
+         FOOTER / CONTACT US
+    ========================= -->
+    <footer id="kontak">
+
+        <div class="footer-container">
+
+            <!-- CONTACT US -->
+            <div class="footer-box">
+
+                <h3>
+                    Contact Us
+                </h3>
+
+                <p>
+                    Location in skaneda
+                </p>
+
+                <p>
+                    WA: 08111122234
+                </p>
+
+                <p>
+                    JagatSaji@gmail.com
+                </p>
+
+            </div>
+
+
+            <!-- JAGATSAJI -->
+            <div class="footer-box">
+
+                <h3>
+                    JagatSaji
+                </h3>
+
+                <p>
+                    Kuliner SMK Negeri 2 Mojokerto
+                </p>
+
+                <div class="social">
+
+                    <a href="#">f</a>
+
+                    <a href="#">◎</a>
+
+                    <a href="#">▶</a>
+
+                    <a href="#">♥</a>
+
+                </div>
+
+            </div>
+
+
+            <!-- OPENING HOURS -->
+            <div class="footer-box">
+
+                <h3>
+                    Opening Hours
+                </h3>
+
+                <p>
+                    Everyday 10.00 AM - 18.00 PM
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- COPYRIGHT -->
+        <div class="copyright">
+
+            © 2026 All Rights Reserved By rpl_skaneda
+
+        </div>
+
+    </footer>
+
+
+</body>
+              </html>
